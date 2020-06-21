@@ -32,7 +32,7 @@ fun Demo() {
     ) {
         Column(modifier = Modifier.padding(4.dp)) {
             Greeting("Android")
-            Button95(onClick = {}) {
+            Button95(modifier = Modifier.padding(4.dp), onClick = {}) {
                 Text("Click me")
             }
         }

@@ -1,20 +1,20 @@
 package com.louis993546.compose95.components
 
 import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.core.WithConstraints
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.drawBackground
-import androidx.ui.foundation.drawBorder
+import androidx.ui.core.*
+import androidx.ui.foundation.*
+import androidx.ui.geometry.Offset
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.HorizontalGradient
+import androidx.ui.graphics.StrokeCap
 import androidx.ui.graphics.TileMode
+import androidx.ui.graphics.drawscope.Stroke
 import androidx.ui.layout.*
 import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import com.louis993546.compose95.grey
 
 @Composable
 fun Window95(
@@ -25,15 +25,84 @@ fun Window95(
     // TODO the border have 2 sets of colors (top + left & bottom + right)
     Column(
         modifier = modifier
-            .drawBackground(Color(206, 208, 207))
-            .drawBorder(2.dp, Color.White)
-            .padding(2.dp)
+            .drawBackground(grey)
+            .composed { DrawBorder95() }
     ) {
-        WindowsHeader {
+        val borderCompensationPadding = 4.dp
+        WindowsHeader(modifier = Modifier.padding(4.dp)) {
             headerContent()
         }
-        content()
+        Box(modifier = Modifier.padding(borderCompensationPadding)) {
+            content()
+        }
     }
+}
+
+// TODO learn drawPath
+class DrawBorder95 : DrawModifier {
+    override fun ContentDrawScope.draw() {
+        drawContent()
+
+        val topLeft = Color.White
+        val bottomRight = Color.Black
+        val grey2 = Color(0xFF888C8F)
+
+        val thickness = (2.dp * density).toPx().value
+        val thickness1 = (4.dp * density).toPx().value
+
+        // draw top
+        drawLine(
+            grey,
+            Offset(0f, 0f),
+            Offset(size.width, 0f),
+            Stroke(thickness1, cap = StrokeCap.square)
+        )
+        drawLine(
+            grey,
+            Offset(0f, 0f),
+            Offset(0f, size.height),
+            Stroke(thickness1, cap = StrokeCap.square)
+        )
+        drawLine(
+            topLeft,
+            Offset(0f, 0f),
+            Offset(size.width, 0f),
+            Stroke(thickness, cap = StrokeCap.square)
+        )
+        drawLine(
+            topLeft,
+            Offset(0f, 0f),
+            Offset(0f, size.height),
+            Stroke(thickness, cap = StrokeCap.square)
+        )
+
+        drawLine(
+            grey2,
+            Offset(size.width, thickness1),
+            Offset(size.width, size.height),
+            Stroke(thickness1, cap = StrokeCap.square)
+        )
+        drawLine(
+            grey2,
+            Offset(thickness1, size.height),
+            Offset(size.width, size.height),
+            Stroke(thickness1, cap = StrokeCap.square)
+        )
+        drawLine(
+            bottomRight,
+            Offset(size.width, thickness),
+            Offset(size.width, size.height),
+            Stroke(thickness, cap = StrokeCap.square)
+        )
+        drawLine(
+            bottomRight,
+            Offset(thickness, size.height),
+            Offset(size.width, size.height),
+            Stroke(thickness, cap = StrokeCap.square)
+        )
+
+    }
+
 }
 
 @Composable

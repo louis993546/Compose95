@@ -12,7 +12,7 @@ import androidx.ui.graphics.drawscope.Stroke
 import androidx.ui.layout.Row
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
-import com.louis993546.compose95.grey
+import com.louis993546.compose95.Color95
 
 @Composable
 fun Button95(
@@ -26,7 +26,7 @@ fun Button95(
                 onClick = onClick,
                 indication = ButtonIndication95()
             ),
-        backgroundColor = grey,
+        backgroundColor = Color95.backgroundGrey,
         paddingStart = 8.dp,
         paddingEnd = 8.dp,
         paddingTop = 2.dp,

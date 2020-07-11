@@ -14,7 +14,7 @@ import androidx.ui.text.TextStyle
 import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
-import com.louis993546.compose95.grey
+import com.louis993546.compose95.Color95
 
 @Composable
 fun Window95(
@@ -25,7 +25,7 @@ fun Window95(
     // TODO the border have 2 sets of colors (top + left & bottom + right)
     Column(
         modifier = modifier
-            .drawBackground(grey)
+            .drawBackground(Color95.backgroundGrey)
             .composed { DrawBorder95() }
     ) {
         val borderCompensationPadding = 4.dp
@@ -52,13 +52,13 @@ class DrawBorder95 : DrawModifier {
 
         // draw top
         drawLine(
-            grey,
+            Color95.backgroundGrey,
             Offset(0f, 0f),
             Offset(size.width, 0f),
             Stroke(thickness1, cap = StrokeCap.square)
         )
         drawLine(
-            grey,
+            Color95.backgroundGrey,
             Offset(0f, 0f),
             Offset(0f, size.height),
             Stroke(thickness1, cap = StrokeCap.square)

@@ -1,6 +1,5 @@
 package components
 
-
 import Color95
 import androidx.compose.foundation.Box
 import androidx.compose.foundation.background
@@ -154,6 +153,9 @@ fun Window95(
                 color = Color.White,
                 style = TextStyle.Default.copy(fontWeight = FontWeight.W700)
             )
+            MinimizeButton95 { }
+            MaximizeButton95 {  }
+            CloseButton95 { }
         },
         content = content
     )

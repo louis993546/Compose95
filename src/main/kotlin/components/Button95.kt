@@ -9,8 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -83,34 +81,24 @@ class ButtonIndication95 : Indication {
     override fun createInstance(): IndicationInstance = Instance
 }
 
+// TODO what does it look like?
 @Composable
 fun CloseButton95(onClick: () -> Unit) {
-
+    Button95(onClick = onClick) {
+        androidx.compose.material.Text("X")
+    }
 }
 
 @Composable
-fun ZoomButton95(onClick: () -> Unit) {
-
+fun MaximizeButton95(onClick: () -> Unit) {
+    Button95(onClick = onClick) {
+        androidx.compose.material.Text("Max")
+    }
 }
 
 @Composable
 fun MinimizeButton95(onClick: () -> Unit) {
-
-}
-
-/**
- * - [] x
- */
-@Composable
-fun MinZoomCloseButtons95(
-    modifier: Modifier = Modifier,
-    onMinimizeClicked: () -> Unit = {},
-    onZoomClicked: () -> Unit = {},
-    onCloseClicked: () -> Unit = {}
-) {
-    Row(modifier = modifier) {
-        MinimizeButton95(onMinimizeClicked)
-        ZoomButton95(onZoomClicked)
-        CloseButton95(onCloseClicked)
+    Button95(onClick = onClick) {
+        androidx.compose.material.Text("Min")
     }
 }

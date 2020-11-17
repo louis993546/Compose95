@@ -1,18 +1,17 @@
-package com.louis993546.compose95.components
+package components
 
-import androidx.compose.Composable
-import androidx.ui.core.ContentDrawScope
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.*
-import androidx.ui.geometry.Offset
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.SolidColor
-import androidx.ui.graphics.StrokeCap
-import androidx.ui.graphics.drawscope.Stroke
-import androidx.ui.layout.Row
-import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
-import com.louis993546.compose95.Color95
+import Color95
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.ContentDrawScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun Button95(
@@ -53,14 +52,14 @@ class ButtonIndication95 : Indication {
                 topLeft,
                 Offset(0f, 0f),
                 Offset(size.width, 0f),
-                Stroke(2.dp.toPx().value, cap = StrokeCap.square)
+                2.dp.toPx()
             )
             // draw left
             drawLine(
                 topLeft,
                 Offset(0f, 0f),
                 Offset(0f, size.height),
-                Stroke(2.dp.toPx().value, cap = StrokeCap.square)
+                2.dp.toPx()
             )
 
             // draw right
@@ -68,14 +67,14 @@ class ButtonIndication95 : Indication {
                 bottomRight,
                 Offset(size.width, 0f),
                 Offset(size.width, size.height),
-                Stroke(2.dp.toPx().value, cap = StrokeCap.square)
+                2.dp.toPx()
             )
             // draw bottom
             drawLine(
-                bottomRight,
-                Offset(0f, size.height),
-                Offset(size.width, size.height),
-                Stroke(2.dp.toPx().value, cap = StrokeCap.square)
+                brush = bottomRight,
+                start = Offset(0f, size.height),
+                end = Offset(size.width, size.height),
+                strokeWidth = 2.dp.toPx(),
             )
         }
 
@@ -114,18 +113,4 @@ fun MinZoomCloseButtons95(
         ZoomButton95(onZoomClicked)
         CloseButton95(onCloseClicked)
     }
-}
-
-@Preview
-@Composable
-fun PreviewButton95() {
-    Button95(onClick = {}) {
-        Text(text = "default")
-    }
-}
-
-@Preview
-@Composable
-fun PreviewMinZoomCloseButton95() {
-    MinZoomCloseButtons95()
 }

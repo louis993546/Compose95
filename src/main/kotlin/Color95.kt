@@ -1,6 +1,4 @@
-package com.louis993546.compose95
-
-import androidx.ui.graphics.Color
+import androidx.compose.ui.graphics.Color
 
 object Color95 {
     val backgroundGrey = Color(ColorHex95.backgroundGrey)

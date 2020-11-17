@@ -1,20 +1,27 @@
-package com.louis993546.compose95.components
+package components
 
-import androidx.compose.Composable
-import androidx.ui.core.*
-import androidx.ui.foundation.*
-import androidx.ui.geometry.Offset
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.HorizontalGradient
-import androidx.ui.graphics.StrokeCap
-import androidx.ui.graphics.TileMode
-import androidx.ui.graphics.drawscope.Stroke
-import androidx.ui.layout.*
-import androidx.ui.text.TextStyle
-import androidx.ui.text.font.FontWeight
-import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
-import com.louis993546.compose95.Color95
+
+import Color95
+import androidx.compose.foundation.Box
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.ContentDrawScope
+import androidx.compose.ui.DrawModifier
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.HorizontalGradient
+import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.layout.WithConstraints
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun Window95(
@@ -25,7 +32,7 @@ fun Window95(
     // TODO the border have 2 sets of colors (top + left & bottom + right)
     Column(
         modifier = modifier
-            .drawBackground(Color95.backgroundGrey)
+            .background(Color95.backgroundGrey)
             .composed { DrawBorder95() }
     ) {
         val borderCompensationPadding = 4.dp
@@ -47,58 +54,58 @@ class DrawBorder95 : DrawModifier {
         val bottomRight = Color.Black
         val grey2 = Color(0xFF888C8F)
 
-        val thickness = (2.dp * density).toPx().value
-        val thickness1 = (4.dp * density).toPx().value
+        val thickness = (2.dp * density).toPx()
+        val thickness1 = (4.dp * density).toPx()
 
         // draw top
         drawLine(
             Color95.backgroundGrey,
             Offset(0f, 0f),
             Offset(size.width, 0f),
-            Stroke(thickness1, cap = StrokeCap.square)
+            thickness1
         )
         drawLine(
             Color95.backgroundGrey,
             Offset(0f, 0f),
             Offset(0f, size.height),
-            Stroke(thickness1, cap = StrokeCap.square)
+            thickness1
         )
         drawLine(
             topLeft,
             Offset(0f, 0f),
             Offset(size.width, 0f),
-            Stroke(thickness, cap = StrokeCap.square)
+            thickness
         )
         drawLine(
             topLeft,
             Offset(0f, 0f),
             Offset(0f, size.height),
-            Stroke(thickness, cap = StrokeCap.square)
+            thickness
         )
 
         drawLine(
             grey2,
             Offset(size.width, thickness1),
             Offset(size.width, size.height),
-            Stroke(thickness1, cap = StrokeCap.square)
+            thickness1
         )
         drawLine(
             grey2,
             Offset(thickness1, size.height),
             Offset(size.width, size.height),
-            Stroke(thickness1, cap = StrokeCap.square)
+            thickness1
         )
         drawLine(
             bottomRight,
             Offset(size.width, thickness),
             Offset(size.width, size.height),
-            Stroke(thickness, cap = StrokeCap.square)
+            thickness
         )
         drawLine(
             bottomRight,
             Offset(thickness, size.height),
             Offset(size.width, size.height),
-            Stroke(thickness, cap = StrokeCap.square)
+            thickness
         )
 
     }
@@ -112,14 +119,14 @@ fun WindowsHeader(
 ) {
     WithConstraints(modifier = modifier) {
         Row(
-            modifier = Modifier.drawBackground(
+            modifier = Modifier.background(
                 HorizontalGradient(
                     colors = listOf(
                         Color(0, 0, 128),
                         Color(16, 52, 166)
                     ),
                     startX = 0f,
-                    endX = this.constraints.maxWidth.value.toFloat(),
+                    endX = this.constraints.maxWidth.toFloat(),
                     tileMode = TileMode.Repeated
                 )
             )
@@ -150,29 +157,4 @@ fun Window95(
         },
         content = content
     )
-}
-
-@Preview
-@Composable
-fun PreviewWindow95() {
-    Window95(
-        headerContent = {
-            Text(
-                modifier = Modifier.weight(1f).padding(4.dp),
-                text = "compose95.exe",
-                color = Color.White,
-                style = TextStyle.Default.copy(fontWeight = FontWeight.W700)
-            )
-            Button95(
-                modifier = Modifier
-                    .gravity(Alignment.CenterVertically)
-                    .preferredSize(25.dp),
-                onClick = {}
-            ) {
-                Text(text = "x", style = TextStyle.Default.copy(fontWeight = FontWeight.Bold))
-            }
-        }
-    ) {
-        Text("This is a Window")
-    }
 }

@@ -142,6 +142,7 @@ fun WindowsHeader(
 fun Window95(
     modifier: Modifier = Modifier,
     headerTitle: String,
+    action: (Window95Action) -> Unit,
     content: @Composable() () -> Unit
 ) {
     Window95(
@@ -153,10 +154,16 @@ fun Window95(
                 color = Color.White,
                 style = TextStyle.Default.copy(fontWeight = FontWeight.W700)
             )
-            MinimizeButton95 { }
-            MaximizeButton95 {  }
-            CloseButton95 { }
+            MinimizeButton95 { action(Window95Action.MinimizeClicked) }
+            MaximizeButton95 { action(Window95Action.MaximizeClicked) }
+            CloseButton95 { action(Window95Action.CloseClicked) }
         },
         content = content
     )
+}
+
+enum class Window95Action {
+    MinimizeClicked,
+    MaximizeClicked,
+    CloseClicked,
 }

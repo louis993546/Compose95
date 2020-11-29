@@ -9,13 +9,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 
 @Composable
-fun Anchor(modifier: Modifier = Modifier, text: String, action: () -> Unit) {
+fun Anchor95(modifier: Modifier = Modifier, text: String, action: () -> Unit) {
     Text(
         modifier = modifier.clickable(onClick = action),
         textDecoration = TextDecoration.Underline,
-        style = TextStyle.Default.copy(
-            color = Color(16, 52, 166)
-        ),
+        style = TextStyle.Default.copy(color = Color95.anchorBlue),
         text = text
     )
 }

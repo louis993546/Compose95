@@ -26,7 +26,7 @@ import javax.imageio.ImageIO
 fun main() {
     val title = "Compose95 Demo"
     Window(
-        undecorated = true,
+        undecorated = false, // TODO turn it back to true once I figure out how to move window myself
         title = title,
         icon = ImageIO.read(Thread.currentThread().contextClassLoader.getResource("icon.png").openStream())
     ) {

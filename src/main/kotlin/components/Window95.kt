@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
@@ -84,9 +86,11 @@ fun Window95(
                 color = Color.White,
                 style = TextStyle.Default.copy(fontWeight = FontWeight.W700)
             )
-            MinimizeButton95 { action(Window95Action.MinimizeClicked) }
-            MaximizeButton95 { action(Window95Action.MaximizeClicked) }
-            CloseButton95 { action(Window95Action.CloseClicked) }
+//            MinimizeButton95 { action(Window95Action.MinimizeClicked) }
+//            MaximizeButton95 { action(Window95Action.MaximizeClicked) }
+            CloseButton95(
+                modifier = Modifier.align(Alignment.CenterVertically)
+            ) { action(Window95Action.CloseClicked) }
         },
         content = content
     )

@@ -1,34 +1,29 @@
 package components
 
 import Color95
-import androidx.compose.desktop.LocalAppWindow
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.LinearGradient
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.input.pointer.consumeAllChanges
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import kotlin.math.roundToInt
 
 @Composable
 fun Window95(
@@ -45,7 +40,6 @@ fun Window95(
             .border95(Elevation.Above)
     ) {
         val borderCompensationPadding = 4.dp
-        val appWindow = LocalAppWindow.current
         WindowsHeader(
             modifier = Modifier.padding(4.dp)
                 .pointerInput(Unit) {
@@ -53,7 +47,6 @@ fun Window95(
                         change.consumeAllChanges()
                         offsetX.value += dragAmount.x
                         offsetY.value += dragAmount.y
-
                     }
                 },
         ) {
@@ -112,9 +105,9 @@ fun Window95(
                 color = Color.White,
                 style = TextStyle.Default.copy(fontWeight = FontWeight.W700)
             )
-            MinimizeButton95 { action(Window95Action.MinimizeClicked) }
-            MaximizeButton95 { action(Window95Action.MaximizeClicked) }
-            CloseButton95 { action(Window95Action.CloseClicked) }
+            MinimizeButton95(modifier = Modifier.height(IntrinsicSize.Min)) { action(Window95Action.MinimizeClicked) }
+            MaximizeButton95(modifier = Modifier.height(IntrinsicSize.Min)) { action(Window95Action.MaximizeClicked) }
+            CloseButton95(modifier = Modifier.height(IntrinsicSize.Min)) { action(Window95Action.CloseClicked) }
         },
         content = content
     )

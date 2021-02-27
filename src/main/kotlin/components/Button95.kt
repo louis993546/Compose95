@@ -1,14 +1,20 @@
 package components
 
-import androidx.compose.foundation.*
+import Color95
+import androidx.compose.foundation.Indication
+import androidx.compose.foundation.IndicationInstance
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -34,7 +40,7 @@ fun Button95(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ButtonIndication95
             ),
-//        gravity = ContentGravity.Center
+        contentAlignment = Alignment.Center
     ) {
         body()
     }
@@ -97,22 +103,22 @@ object ButtonIndication95 : Indication {
 
 // TODO what does it look like?
 @Composable
-fun CloseButton95(onClick: () -> Unit) {
-    Button95(onClick = onClick) {
-        androidx.compose.material.Text("X")
+fun CloseButton95(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Button95(modifier = modifier, onClick = onClick) {
+        Text("X")
     }
 }
 
 @Composable
-fun MaximizeButton95(onClick: () -> Unit) {
-    Button95(onClick = onClick) {
-        androidx.compose.material.Text("Max")
+fun MaximizeButton95(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Button95(modifier = modifier, onClick = onClick) {
+        Text("Max")
     }
 }
 
 @Composable
-fun MinimizeButton95(onClick: () -> Unit) {
-    Button95(onClick = onClick) {
-        androidx.compose.material.Text("Min")
+fun MinimizeButton95(modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Button95(modifier = modifier, onClick = onClick) {
+        Text("Min")
     }
 }

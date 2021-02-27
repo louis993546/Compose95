@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
 import androidx.compose.ui.unit.dp
 
 /**
@@ -21,7 +20,7 @@ fun AppBar95(
         modifier = modifier
             .fillMaxWidth()
             .background(Color95.backgroundGrey)
-            .composed { DrawBorder95(elevation = Elevation.Above) }
+            .border95(elevation = Elevation.Above)
     ) {
         Row(modifier = Modifier.padding(4.dp)) {
             Button95(onClick = { }) {

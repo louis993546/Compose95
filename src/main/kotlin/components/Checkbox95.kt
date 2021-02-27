@@ -1,9 +1,10 @@
 package components
 
 import Color95
-import androidx.compose.foundation.Box
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -27,13 +28,14 @@ fun Checkbox95(
     Box(
         modifier = modifier
             .size(20.dp)
-            .composed { DrawBorder95(Elevation.Below) }
-            .clickable(onClick = { onClick(isCheck) }),
-        backgroundColor = Color95.checkboxWhite
+            .border95(Elevation.Below)
+            .clickable(onClick = { onClick(isCheck) })
+            .background(Color95.checkboxWhite),
     ) {
         if (isCheck) Image(
             modifier = modifier.padding(2.dp),
-            asset = imageResource("Check95.png")
+            contentDescription = "",
+            bitmap = imageResource("Check95.png")
         )
     }
 }

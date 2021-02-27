@@ -1,45 +1,52 @@
 package components
 
-import Color95
 import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.interaction.InteractionSource
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ContentDrawScope
+import androidx.compose.runtime.State
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun Button95(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    body: @Composable() () -> Unit
+    body: @Composable () -> Unit
 ) {
     Box(
         modifier = modifier
+            .padding(
+                horizontal = 8.dp,
+                vertical = 2.dp,
+            )
+            .background(Color95.backgroundGrey)
             .clickable(
                 onClick = onClick,
-                indication = ButtonIndication95()
+                interactionSource = remember { MutableInteractionSource() },
+                indication = ButtonIndication95
             ),
-        backgroundColor = Color95.backgroundGrey,
-        paddingStart = 8.dp,
-        paddingEnd = 8.dp,
-        paddingTop = 2.dp,
-        paddingBottom = 2.dp,
-        gravity = ContentGravity.Center
+//        gravity = ContentGravity.Center
     ) {
         body()
     }
 }
 
-class ButtonIndication95 : Indication {
-    private object Instance : IndicationInstance {
-        override fun ContentDrawScope.drawIndication(interactionState: InteractionState) {
+object ButtonIndication95 : Indication {
+    private class ButtonIndication95Instance(
+        private val isPressed: State<Boolean>
+        ) : IndicationInstance {
+        override fun ContentDrawScope.drawIndication() {
             drawContent()
-
-            val (topLeft, bottomRight) = if (interactionState.contains(Interaction.Pressed)) {
+            val (topLeft, bottomRight) = if (isPressed.value) {
                 SolidColor(Color.Black) to SolidColor(Color.White)
             } else {
                 SolidColor(Color.White) to SolidColor(Color.Black)
@@ -47,10 +54,10 @@ class ButtonIndication95 : Indication {
 
             // draw top
             drawLine(
-                topLeft,
-                Offset(0f, 0f),
-                Offset(size.width, 0f),
-                2.dp.toPx()
+                brush = topLeft,
+                start = Offset(0f, 0f),
+                end = Offset(size.width, 0f),
+                strokeWidth = 2.dp.toPx()
             )
             // draw left
             drawLine(
@@ -78,8 +85,15 @@ class ButtonIndication95 : Indication {
 
     }
 
-    override fun createInstance(): IndicationInstance = Instance
+    @Composable
+    override fun rememberUpdatedInstance(
+        interactionSource: InteractionSource,
+    ): IndicationInstance {
+        val isPressed = interactionSource.collectIsPressedAsState()
+        return remember(interactionSource) { ButtonIndication95Instance(isPressed) }
+    }
 }
+
 
 // TODO what does it look like?
 @Composable

@@ -1,9 +1,8 @@
-import androidx.compose.desktop.AppWindowAmbient
+import androidx.compose.desktop.LocalAppWindow
 import androidx.compose.desktop.Window
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,7 +29,7 @@ fun main() {
         title = title,
         icon = ImageIO.read(Thread.currentThread().contextClassLoader.getResource("icon.png").openStream())
     ) {
-        val appWindow = AppWindowAmbient.current
+        val appWindow = LocalAppWindow.current
 
         Window95(
             modifier = Modifier.fillMaxHeight(),
@@ -39,7 +38,7 @@ fun main() {
                 when (it) {
                     Window95Action.MinimizeClicked -> TODO("It is OS dependent, right?")
                     Window95Action.MaximizeClicked -> TODO("how to get screen size?")
-                    Window95Action.CloseClicked -> appWindow?.close()
+                    Window95Action.CloseClicked -> appWindow.close()
                 }
             }
         ) {

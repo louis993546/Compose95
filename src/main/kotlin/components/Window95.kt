@@ -3,6 +3,7 @@ package components
 import Color95
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -11,10 +12,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.HorizontalGradient
+import androidx.compose.ui.graphics.LinearGradient
 import androidx.compose.ui.graphics.TileMode
-import androidx.compose.ui.layout.WithConstraints
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -22,14 +24,14 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Window95(
     modifier: Modifier = Modifier,
-    headerContent: @Composable() RowScope.() -> Unit,
-    content: @Composable() () -> Unit
+    headerContent: @Composable RowScope.() -> Unit,
+    content: @Composable () -> Unit
 ) {
     // TODO the border have 2 sets of colors (top + left & bottom + right)
     Column(
         modifier = modifier
             .background(Color95.backgroundGrey)
-            .composed { DrawBorder95(elevation = Elevation.Above) }
+            .border95(Elevation.Above)
     ) {
         val borderCompensationPadding = 4.dp
         WindowsHeader(modifier = Modifier.padding(4.dp)) {
@@ -44,18 +46,18 @@ fun Window95(
 @Composable
 fun WindowsHeader(
     modifier: Modifier = Modifier,
-    content: @Composable() RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit
 ) {
-    WithConstraints(modifier = modifier) {
+    BoxWithConstraints(modifier = modifier) {
         Row(
             modifier = Modifier.background(
-                HorizontalGradient(
-                    colors = listOf(
-                        Color(0, 0, 128),
-                        Color(16, 52, 166)
+                Brush.linearGradient(
+                    colorStops = arrayOf(
+                        0f to Color(0, 0, 128),
+                        1f to Color(16, 52, 166),
                     ),
-                    startX = 0f,
-                    endX = constraints.maxWidth.toFloat(),
+                    start = Offset(0f, 0f),
+                    end = Offset(constraints.maxWidth.toFloat(), 0f),
                     tileMode = TileMode.Repeated
                 )
             )

@@ -1,4 +1,4 @@
-package components
+package com.louis993546.compose95.components
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

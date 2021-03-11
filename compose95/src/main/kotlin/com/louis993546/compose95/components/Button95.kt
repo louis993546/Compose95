@@ -1,6 +1,5 @@
-package components
+package com.louis993546.compose95.components
 
-import Color95
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.IndicationInstance
 import androidx.compose.foundation.background
@@ -21,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import androidx.compose.ui.unit.dp
+import com.louis993546.compose95.Color95
 
 @Composable
 fun Button95(

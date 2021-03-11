@@ -1,6 +1,6 @@
-package components
+package com.louis993546.compose95.components
 
-import Color95
+import com.louis993546.compose95.Color95
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawWithCache

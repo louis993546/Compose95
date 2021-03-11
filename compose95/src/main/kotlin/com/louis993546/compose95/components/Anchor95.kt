@@ -1,12 +1,12 @@
-package components
+package com.louis993546.compose95.components
 
-import Color95
 import androidx.compose.foundation.clickable
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
+import com.louis993546.compose95.Color95
 
 @Composable
 fun Anchor95(modifier: Modifier = Modifier, text: String, action: () -> Unit) {

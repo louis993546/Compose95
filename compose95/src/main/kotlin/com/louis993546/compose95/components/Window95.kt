@@ -1,6 +1,5 @@
-package components
+package com.louis993546.compose95.components
 
-import Color95
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -24,6 +23,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.louis993546.compose95.Color95
 
 @Composable
 fun Window95(

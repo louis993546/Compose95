@@ -1,4 +1,4 @@
-package com.louis993546.compose95
+package com.louis993546.compose95.calculator
 
 import androidx.compose.desktop.LocalAppWindow
 import androidx.compose.desktop.Window

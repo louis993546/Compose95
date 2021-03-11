@@ -1,3 +1,5 @@
+package com.louis993546.compose95
+
 import androidx.compose.ui.graphics.Color
 
 object Color95 {

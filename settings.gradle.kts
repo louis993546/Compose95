@@ -7,4 +7,4 @@ pluginManagement {
     
 }
 rootProject.name = "Compose95"
-
+include("compose95", "demo")

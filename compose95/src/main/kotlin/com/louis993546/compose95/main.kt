@@ -1,3 +1,5 @@
+package com.louis993546.compose95
+
 import androidx.compose.desktop.LocalAppWindow
 import androidx.compose.desktop.Window
 import androidx.compose.foundation.background
@@ -14,13 +16,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import components.AppBar95
-import components.Button95
-import components.Checkbox95
-import components.Cutout95
-import components.Window95
+import com.louis993546.compose95.components.AppBar95
+import com.louis993546.compose95.components.Button95
+import com.louis993546.compose95.components.Checkbox95
+import com.louis993546.compose95.components.Cutout95
+import com.louis993546.compose95.components.Window95
 import javax.imageio.ImageIO
-import components.Window95Action as Action
+import com.louis993546.compose95.components.Window95Action as Action
 
 fun main() {
     val title = "Compose95 Demo"

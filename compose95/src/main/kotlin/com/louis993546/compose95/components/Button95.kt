@@ -49,9 +49,9 @@ object ButtonIndication95 : Indication {
         override fun ContentDrawScope.drawIndication() {
             drawContent()
             val (topLeft, bottomRight) = if (isPressed.value) {
-                SolidColor(Color.Black) to SolidColor(Color.White)
+                SolidColor(Color95.gray2) to SolidColor(Color95.white2)
             } else {
-                SolidColor(Color.White) to SolidColor(Color.Black)
+                SolidColor(Color95.white2) to SolidColor(Color95.gray2)
             }
 
             // draw top

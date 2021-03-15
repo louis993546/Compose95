@@ -12,7 +12,9 @@ import androidx.compose.ui.unit.dp
 /**
  * TODO is drawPath better than drawLine multiple times?
  */
-fun Modifier.border95(elevation: Elevation): Modifier = composed(
+fun Modifier.border95(
+    elevation: Elevation,
+): Modifier = composed(
     factory = {
         this.then(
             Modifier.drawWithCache {

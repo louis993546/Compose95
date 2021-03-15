@@ -4,16 +4,13 @@ import androidx.compose.desktop.LocalAppWindow
 import androidx.compose.desktop.Window
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicText
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.louis993546.compose95.components.Button95
-import com.louis993546.compose95.components.Text95
+import com.louis993546.compose95.components.Divider95
+import com.louis993546.compose95.components.TextField95
 import com.louis993546.compose95.components.Window95
 import javax.imageio.ImageIO
 import com.louis993546.compose95.components.Window95Action as Action
@@ -64,9 +61,11 @@ fun main() {
 fun Body95(
     modifier: Modifier = Modifier,
 ) {
-    // menu row
-    // divider
-    Calculator95()
+    Column(modifier = modifier) {
+        // menu row
+        Divider95()
+        Calculator95()
+    }
 }
 
 @Composable
@@ -88,10 +87,25 @@ fun Calculator95(
         }
     }
 
-    Column {
-        Text95(value) // TODO
-        // TODO back, ce, and c
-        Row(modifier = modifier.padding(8.dp)) {
+    Column(modifier = modifier.padding(8.dp)) {
+        TextField95(
+            modifier = Modifier.fillMaxWidth(),
+            readOnly = true,
+            singleLine = true,
+            value = value,
+            onValueChange = { },
+        )
+        Spacer(modifier = Modifier.height(5.dp))
+        Row {
+            Spacer(modifier = Modifier.weight(1f))
+            CalculatorButtonAlt95(text = "Back", onClick = { processOnClick("Back") })
+            Spacer(modifier = Modifier.width(4.dp))
+            CalculatorButtonAlt95(text = "CE", onClick = { processOnClick("CE") })
+            Spacer(modifier = Modifier.width(4.dp))
+            CalculatorButtonAlt95(text = "C", onClick = { processOnClick("C") })
+        }
+        Spacer(modifier = Modifier.height(5.dp))
+        Row {
             ColumnOfButtons95(
                 keys = listOf("MC", "MR", "MS", "M+"),
                 onKeyClick = { println("$it clicked") },
@@ -132,13 +146,13 @@ fun ColumnOfButtons95(
     keys: List<String>,
     onKeyClick: (String) -> Unit,
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.padding(4.dp)) {
         keys.forEach { key ->
             CalculatorButton95(
-                modifier = Modifier.padding(3.dp),
                 text = key,
                 onClick = onKeyClick,
             )
+            Spacer(modifier = Modifier.height(4.dp)) // TODO do not do this for the last row
         }
     }
 }
@@ -151,6 +165,23 @@ fun CalculatorButton95(
 ) {
     Button95(
         modifier = modifier.sizeIn(minWidth = 32.dp, minHeight = 28.dp),
+        onClick = { onClick(text) },
+    ) {
+        BasicText(
+            modifier = Modifier,
+            text = text,
+        )
+    }
+}
+
+@Composable
+fun CalculatorButtonAlt95(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: (String) -> Unit,
+) {
+    Button95(
+        modifier = modifier.sizeIn(minWidth = 44.dp, minHeight = 28.dp),
         onClick = { onClick(text) },
     ) {
         BasicText(

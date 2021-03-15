@@ -30,10 +30,6 @@ fun Button95(
 ) {
     Box(
         modifier = modifier
-            .padding(
-                horizontal = 8.dp,
-                vertical = 2.dp,
-            )
             .background(Color95.backgroundGrey)
             .clickable(
                 onClick = onClick,
@@ -53,9 +49,9 @@ object ButtonIndication95 : Indication {
         override fun ContentDrawScope.drawIndication() {
             drawContent()
             val (topLeft, bottomRight) = if (isPressed.value) {
-                SolidColor(Color.Black) to SolidColor(Color.White)
+                SolidColor(Color95.gray2) to SolidColor(Color95.white2)
             } else {
-                SolidColor(Color.White) to SolidColor(Color.Black)
+                SolidColor(Color95.white2) to SolidColor(Color95.gray2)
             }
 
             // draw top
@@ -119,6 +115,6 @@ fun MaximizeButton95(modifier: Modifier = Modifier, onClick: () -> Unit) {
 @Composable
 fun MinimizeButton95(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button95(modifier = modifier, onClick = onClick) {
-        Text("Min")
+        Text(" _ ")
     }
 }

@@ -30,10 +30,6 @@ fun Button95(
 ) {
     Box(
         modifier = modifier
-            .padding(
-                horizontal = 8.dp,
-                vertical = 2.dp,
-            )
             .background(Color95.backgroundGrey)
             .clickable(
                 onClick = onClick,
@@ -119,6 +115,6 @@ fun MaximizeButton95(modifier: Modifier = Modifier, onClick: () -> Unit) {
 @Composable
 fun MinimizeButton95(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button95(modifier = modifier, onClick = onClick) {
-        Text("Min")
+        Text(" _ ")
     }
 }

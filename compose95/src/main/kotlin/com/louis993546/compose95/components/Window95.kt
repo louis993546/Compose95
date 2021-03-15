@@ -2,17 +2,11 @@ package com.louis993546.compose95.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -100,14 +94,28 @@ fun Window95(
         offsetY = offsetY,
         headerContent = {
             Text(
-                modifier = Modifier.weight(1f).padding(4.dp),
+                modifier = Modifier
+                    .weight(1f) // TODO How to add spacing between this text and the buttons only if children has extra space?
+                    .padding(4.dp),
                 text = headerTitle,
                 color = Color.White,
                 style = TextStyle.Default.copy(fontWeight = FontWeight.W700)
             )
-            MinimizeButton95(modifier = Modifier.height(IntrinsicSize.Min)) { action(Window95Action.MinimizeClicked) }
-            MaximizeButton95(modifier = Modifier.height(IntrinsicSize.Min)) { action(Window95Action.MaximizeClicked) }
-            CloseButton95(modifier = Modifier.height(IntrinsicSize.Min)) { action(Window95Action.CloseClicked) }
+
+            val buttonModifier = Modifier
+                .height(IntrinsicSize.Min)
+                .padding(2.dp)
+                .align(Alignment.CenterVertically)
+
+            MinimizeButton95(
+                modifier = buttonModifier
+            ) { action(Window95Action.MinimizeClicked) }
+            MaximizeButton95(
+                modifier = buttonModifier
+            ) { action(Window95Action.MaximizeClicked) }
+            CloseButton95(
+                modifier = buttonModifier
+            ) { action(Window95Action.CloseClicked) }
         },
         content = content
     )
